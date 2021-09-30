@@ -133,6 +133,5 @@ dmypy.json
 
 .vscode
 backend/setup.cfg
-backend/import.py
 backend/backend_media
 backend/backend_static

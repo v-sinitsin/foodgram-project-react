@@ -6,14 +6,14 @@ class User(AbstractUser):
     email = models.EmailField(
         max_length=254, unique=True, verbose_name='Email')
     username = models.CharField(
-        unique=True, blank=False,
-        max_length=150, validators=[AbstractUser.username_validator],
+        unique=True, max_length=150,
+        validators=[AbstractUser.username_validator],
         verbose_name='Имя пользователя'
     )
     first_name = models.CharField(
-        max_length=150, blank=False, verbose_name='Имя')
+        max_length=150, verbose_name='Имя')
     last_name = models.CharField(
-        max_length=150, blank=False, verbose_name='Фамилия')
+        max_length=150, verbose_name='Фамилия')
     REQUIRED_FIELDS = ['username', 'last_name', 'first_name']
     USERNAME_FIELD = 'email'
 
