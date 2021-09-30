@@ -7,9 +7,8 @@ User = get_user_model()
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=200, blank=False,
-                            verbose_name='Название')
-    color = ColorField(default="#000000", verbose_name='Цвет')
+    name = models.CharField(max_length=200, verbose_name='Название')
+    color = ColorField(default='#000000', verbose_name='Цвет')
     slug = models.SlugField(max_length=200, verbose_name='Slug')
 
     class Meta:
@@ -37,7 +36,8 @@ class Ingredient(models.Model):
         verbose_name_plural = 'Ингредиенты'
         constraints = [
             models.UniqueConstraint(
-                fields=['name'], name='unique_ingredient_name')
+                fields=['name', 'measurement_unit'],
+                name='unique_ingredient_name_measurement_unit')
         ]
 
     def __str__(self):
@@ -46,17 +46,18 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="recipes",
+        User, on_delete=models.CASCADE, related_name='recipes',
         null=True, verbose_name='Автор')
     name = models.CharField(max_length=300, verbose_name='Название')
     image = models.ImageField(
-        upload_to="media/recipes/images", verbose_name='Изображение')
+        upload_to='recipes/images', verbose_name='Изображение')
     text = models.TextField(verbose_name='Описание')
     ingredients = models.ManyToManyField(
-        Ingredient, through="RecipeIngredient", verbose_name='Ингредиенты')
+        Ingredient, through='RecipeIngredient', verbose_name='Ингредиенты')
     tags = models.ManyToManyField(Tag, verbose_name='Теги')
     cooking_time = models.PositiveSmallIntegerField(
-        validators=[MinValueValidator(1)], verbose_name='Время приготовления')
+        validators=[MinValueValidator(1, 'Значение должно быть больше 1!')],
+        verbose_name='Время приготовления')
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name='Дата создания')
 
@@ -80,7 +81,8 @@ class RecipeIngredient(models.Model):
     ingredient = models.ForeignKey(
         Ingredient, on_delete=models.CASCADE, verbose_name='Ингредиент')
     amount = models.PositiveIntegerField(
-        validators=[MinValueValidator(1)], verbose_name='Количество')
+        validators=[MinValueValidator(1, 'Значение должно быть больше 1!')],
+        verbose_name='Количество')
 
     class Meta:
         verbose_name = 'Ингредиент рецепта'
