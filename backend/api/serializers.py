@@ -156,6 +156,15 @@ class RecipeCreationSerializer(serializers.ModelSerializer):
                 'Время приготовления должно быть больше нуля.')
         return value
 
+    def validate_ingredients(self, value):
+        if not value:
+            raise ValidationError(
+                'Необходимо указать как минимум один ингредиент.')
+        ids = [ingredient['id'] for ingredient in value]
+        if len(ids) != len(set(ids)):
+            raise ValidationError('Ингредиенты не должны повторяться.')
+        return value
+
 
 class RecipeShortInfoSerializer(serializers.ModelSerializer):
     image = Base64ImageField()
