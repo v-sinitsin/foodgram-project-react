@@ -195,7 +195,7 @@ class UserSubscriptionSerializer(UserInfoSerializer):
 
     def get_recipes(self, obj):
         recipes = Recipe.objects.filter(author=obj).order_by(
-            'created_at')
+            '-created_at')
         recipes_limit = self.context['request'].query_params.get(
             'recipes_limit')
         if recipes_limit is not None:
