@@ -1,5 +1,5 @@
 # praktikum_new_diplom
-![foodgram-project-react workflow](https://github.com/v-sinitsin/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
+![foodgram-project-react workflow](https://github.com/v-sinitsin/foodgram-project-react/actions/workflows/foodgram-workflow.yml/badge.svg)
 
 ### Продуктовый помощник Foodgram
 Демонстрационная версия развернута на <http://62.84.118.128/>
@@ -15,12 +15,6 @@
 2. Склонируйте [данный репозиторий](https://github.com/v-sinitsin/foodgram-project-react.git)
 3. В каталоге ```infra``` создайте файл ```.env``` со следующим содержимым:
 ```` 
-DB_NAME=postgres # имя базы данных
-POSTGRES_USER=postgres # логин для подключения к базе данных
-POSTGRES_PASSWORD=postgres # пароль для подключения к БД (установите свой)
-DB_HOST=db # название сервиса (контейнера)
-DB_PORT=5432 # порт для подключения к БД
-
 POSTGRES_DB=foodgram # имя базы данных
 POSTGRES_USER=postgres # логин для подключения к БД
 POSTGRES_PASSWORD=postgres # пароль для подключения к БД
