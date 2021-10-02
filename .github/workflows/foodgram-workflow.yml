@@ -40,6 +40,7 @@ jobs:
             host: ${{ secrets.HOST }}
             username: ${{ secrets.USER }}
             key: ${{ secrets.SSH_KEY }}
+            stack_file_name: ./infra/docker-compose.yml
             script: |
               sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram-frontend:latest
               sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram-backend:latest
