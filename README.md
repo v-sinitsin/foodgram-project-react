@@ -25,9 +25,9 @@ DJANGO_SECRET_KEY=django-insecure-*%+770@+$i_4fw@^6a803gbysp&n&)h02(7!0ghoel)i*e
 3. В каталоге ```infra``` выполните команды для запуска всех контейнеров, применения миграций, создания суперпользователя:  
 ```` 
 docker-compose up -d 
-docker-compose exec web python manage.py migrate
-docker-compose exec web python manage.py collectstatic
-docker-compose exec web python manage.py createsuperuser
+docker-compose exec backend python manage.py migrate
+docker-compose exec backend python manage.py collectstatic
+docker-compose exec backend python manage.py createsuperuser
 ````
 ### Технологии
 Python  
