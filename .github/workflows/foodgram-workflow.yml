@@ -41,7 +41,7 @@ jobs:
             host: ${{ secrets.HOST }}
             username: ${{ secrets.USER }}
             key: ${{ secrets.SSH_KEY }}
-            source: "infra/docker-compose.yaml,infra/nginx.conf"
+            source: "infra/*"
             target: "."          
         - name: executing remote ssh commands to deploy
           uses: appleboy/ssh-action@master
@@ -53,6 +53,7 @@ jobs:
               sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram-frontend:latest
               sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram-backend:latest
               sudo docker-compose stop
+              cd infra
               touch .env 
               echo DB_NAME=${{ secrets.DB_NAME }} >> .env
               echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
