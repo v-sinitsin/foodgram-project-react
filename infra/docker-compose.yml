@@ -7,7 +7,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     restart: always
     env_file:
-      - ../backend/.env
+      - ./.env
 
   backend:
     build:
@@ -20,7 +20,7 @@ services:
       - static_value:/backend/backend_static/
       - media_value:/backend/backend_media/
     env_file:
-      - ../backend/.env
+      - ./.env
 
   frontend:
     build:
