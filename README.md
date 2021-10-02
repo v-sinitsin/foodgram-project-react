@@ -2,7 +2,7 @@
 ![foodgram-project-react workflow](https://github.com/v-sinitsin/foodgram-project-react/actions/workflows/foodgram-workflow.yml/badge.svg)
 
 ### Продуктовый помощник Foodgram
-Демонстрационная версия развернута на <http://62.84.118.128/>
+Демонстрационная версия развернута на <http://62.84.118.128/>  
 Учетная запись администратора для теста:
 - Email: admin@admin.ru
 - Пароль: admin
@@ -22,10 +22,9 @@ DB_HOST=db # название сервиса (контейнера) с PostgreSQ
 DB_PORT=5432 # порт для подключения к БД
 DJANGO_SECRET_KEY=django-insecure-*%+770@+$i_4fw@^6a803gbysp&n&)h02(7!0ghoel)i*e6jlt # секретный ключ Django
 ````
-3. В каталоге infra выполните команды для создания и применения миграций, создания суперпользователя:  
+3. В каталоге ```infra``` выполните команды для запуска всех контейнеров, применения миграций, создания суперпользователя:  
 ```` 
 docker-compose up -d 
-docker-compose exec web python manage.py makemigrations api
 docker-compose exec web python manage.py migrate
 docker-compose exec web python manage.py collectstatic
 docker-compose exec web python manage.py createsuperuser
@@ -33,8 +32,8 @@ docker-compose exec web python manage.py createsuperuser
 ### Технологии
 Python  
 Django  
-DRF
-Docker
-Github Actions
+DRF  
+Docker  
+Github Actions  
 ### Автор
 [Владимир Синицин](https://github.com/v-sinitsin)
