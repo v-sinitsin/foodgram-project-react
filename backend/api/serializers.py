@@ -98,12 +98,6 @@ class IngredientRecipeCreationSerializer(serializers.ModelSerializer):
         model = RecipeIngredient
         fields = ['id', 'amount']
 
-    def validate_amount(self, value):
-        if value <= 0:
-            raise serializers.ValidationError(
-                'Количество ингредиентов должно быть больше нуля.')
-        return value
-
 
 class RecipeCreationSerializer(serializers.ModelSerializer):
     ingredients = IngredientRecipeCreationSerializer(many=True)
@@ -163,6 +157,10 @@ class RecipeCreationSerializer(serializers.ModelSerializer):
         ids = [ingredient['id'] for ingredient in value]
         if len(ids) != len(set(ids)):
             raise ValidationError('Ингредиенты не должны повторяться.')
+        amounts = [ingredient['amount'] for ingredient in value]
+        if not all(amount > 0 for amount in amounts):
+            raise ValidationError(
+                'Количество ингредиента должно быть положительным.')
         return value
 
 
